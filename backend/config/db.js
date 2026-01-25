@@ -1,11 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+require('dotenv').config();   // <-- correct
+
+const uri = process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://greatstack:abd123gha456@cluster0.abrud7r.mongodb.net/ecommerce");
-    console.log("MongoDB Connected");
+    await mongoose.connect(uri);
+    console.log("MongoDB connected successfully");
   } catch (error) {
-    console.log(error);
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
   }
 };
 
