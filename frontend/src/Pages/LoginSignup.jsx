@@ -5,7 +5,7 @@ const LoginSignup = () => {
 
   const [state,setState]=useState("login");
   const [formData,setFormData]=useState({
-    name:"",
+    
     email:"",
     password:""
   });
