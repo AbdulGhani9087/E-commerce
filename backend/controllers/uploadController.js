@@ -1,17 +1,24 @@
-const path = require("path");
-
-// Multer setup
 const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
 
-// Storage engine
-const storage = multer.diskStorage({
-  destination: "./uploads/images",
-  filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+// Configure Cloudinary using environment variables
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Use Cloudinary as multer storage — images are uploaded directly to the cloud
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "ecommerce-products",
+    allowed_formats: ["jpg", "jpeg", "png", "webp", "svg"],
+    transformation: [{ width: 800, height: 800, crop: "limit" }],
   },
 });
 
-// Upload middleware
 const upload = multer({ storage }).single("product");
 
 // Upload controller
@@ -23,9 +30,10 @@ const uploadImage = (req, res) => {
     if (!req.file) {
       return res.status(400).json({ success: 0, message: "No file uploaded" });
     }
+    // Cloudinary returns the secure URL directly in req.file.path
     res.json({
       success: 1,
-      image_url: `${process.env.BACKEND_URL || "https://ecommerceapp-eh1d.onrender.com"}/images/${req.file.filename}`,
+      image_url: req.file.path,
     });
   });
 };
