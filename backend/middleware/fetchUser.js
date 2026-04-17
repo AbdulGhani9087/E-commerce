@@ -5,7 +5,7 @@ const fetchUser = (req, res, next) => {
   if (!token) return res.status(401).send({ errors: "Authenticate first" });
 
   try {
-    const data = jwt.verify(token, "secret_ecom");
+    const data = jwt.verify(token, process.env.JWT_SECRET || "secret_ecom");
     req.user = data.user;
     next();
   } catch {

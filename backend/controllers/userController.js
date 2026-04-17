@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
   const user = new Users({ ...req.body, cartData: cart });
   await user.save();
 
-  const token = jwt.sign({ user: { id: user.id } }, "secret_ecom");
+  const token = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET || "secret_ecom");
   res.json({ success: true, authToken: token });
 };
 
@@ -19,6 +19,6 @@ exports.login = async (req, res) => {
   const user = await Users.findOne(req.body);
   if (!user) return res.status(400).json({ success: false });
 
-  const token = jwt.sign({ user: { id: user.id } }, "secret_ecom");
+  const token = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET || "secret_ecom");
   res.json({ success: true, authToken: token });
 };

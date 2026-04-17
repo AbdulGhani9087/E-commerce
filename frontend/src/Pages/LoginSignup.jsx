@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './CSS/LoginSignup.css'
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+
 const LoginSignup = () => {
 
   const [state,setState]=useState("login");
@@ -20,7 +22,7 @@ const LoginSignup = () => {
 const login = async () => {
   console.log("login function executed", formData);
   let responseData;
-  await fetch('http://localhost:4000/login', {
+  await fetch(`${BACKEND_URL}/login`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -45,7 +47,7 @@ const login = async () => {
   const signup = async () => {
   console.log("Signup function executed", formData);
   let responseData;
-  await fetch('http://localhost:4000/signup', {
+  await fetch(`${BACKEND_URL}/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',        // fixed Accept header

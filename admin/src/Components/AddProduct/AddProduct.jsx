@@ -2,6 +2,8 @@ import React ,{useState}from 'react'
 import './AddProduct.css'
 import upload_area from '../../assets/upload_area.svg'
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+
 const AddProduct = () => {
 
     const [image,setImage]=useState(false);
@@ -29,7 +31,7 @@ const AddProduct = () => {
 
         let formData=new FormData();
         formData.append('product',image);
-        await fetch('http://localhost:4000/upload',{
+        await fetch(`${BACKEND_URL}/upload`,{
             method:'POST',
             headers:{
                 Accept: 'application/json'
@@ -39,7 +41,7 @@ const AddProduct = () => {
         if(responseData.success){
             product.image=responseData.image_url;
             console.log(product);
-            await fetch ('http://localhost:4000/addproduct',{
+            await fetch (`${BACKEND_URL}/addproduct`,{
                 method :'POST',
                 headers:{
                     Accept:'application/json',

@@ -3,6 +3,8 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const ShopContext = createContext(null);
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+
 const getDefaultCart = () => {
   let cart = {};
   for (let i = 1; i <= 301; i++) {
@@ -15,13 +17,13 @@ export const ShopContextProvider = (props) => {
   const [all_product, setAllProduct] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 useEffect(() => {
-  fetch('http://localhost:4000/allproducts')
+  fetch(`${BACKEND_URL}/allproducts`)
     .then((response) => response.json())
     .then((data) => setAllProduct(data))
     .catch(error => console.error('Fetch error:', error));
 
   if (localStorage.getItem('authtoken')) {
-    fetch('http://localhost:4000/getcart', {
+    fetch(`${BACKEND_URL}/getcart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +62,7 @@ useEffect(() => {
     const updated = { ...prev, [itemId]: prev[itemId] + 1 };
 
     if (localStorage.getItem('authtoken')) {
-      fetch('http://localhost:4000/addtocart', {
+      fetch(`${BACKEND_URL}/addtocart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +87,7 @@ useEffect(() => {
     const updated = { ...prev, [itemId]: Math.max(prev[itemId] - 1, 0) };
 
     if (localStorage.getItem('authtoken')) {
-      fetch('http://localhost:4000/removefromcart', {
+      fetch(`${BACKEND_URL}/removefromcart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

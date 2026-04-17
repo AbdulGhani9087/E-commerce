@@ -338,19 +338,29 @@
 //   console.log(`server is running on port ${port}`);
 // });
 
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
+
+// CORS configuration - allow frontend and admin from any origin (Vercel)
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",")
+    : "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Accept", "authtoken"],
+  credentials: true,
+};
 
 connectDB();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/images", express.static("uploads/images"));
 app.use("/", require("./routes/uploadRoutes"));
-
 
 app.use("/", require("./routes/productRoutes"));
 app.use("/", require("./routes/userRoutes"));
