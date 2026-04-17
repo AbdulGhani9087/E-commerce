@@ -10,7 +10,7 @@ export const Popular = () => {
   const sectionRef = useRef(null);
 
   useEffect(()=>{
-          fetch('http://localhost:4000/popularinwomen')
+          fetch(`${import.meta.env.VITE_BACKEND_URL}/popularinwomen`)
           .then((response)=>response.json())
           .then((data)=>setPopularProducts(data))
        },[])

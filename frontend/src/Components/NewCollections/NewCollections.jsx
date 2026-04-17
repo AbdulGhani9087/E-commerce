@@ -9,7 +9,7 @@ export const NewCollections = () => {
      const [new_collection,setNew_collection]=useState([])
 
      useEffect(()=>{
-        fetch('http://localhost:4000/newcollections')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/newcollections`)
         .then((response)=>response.json())
         .then((data)=>setNew_collection(data))
      },[])
