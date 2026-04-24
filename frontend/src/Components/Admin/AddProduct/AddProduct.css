@@ -1,0 +1,187 @@
+/* Admin Add Product Styles — scoped with admin- prefix to avoid clashes */
+
+.admin-add-product {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    padding: 35px 45px;
+    margin: 0 auto;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    animation: adminFadeIn 0.4s ease-out;
+}
+
+.admin-add-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f5;
+}
+
+.admin-add-title svg {
+    color: #6c5ce7;
+}
+
+.admin-addproduct-itemfield {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.admin-addproduct-itemfield label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4a4a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-addproduct-itemfield input,
+.admin-add-product-selector {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e8e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fafaff;
+    color: #333;
+}
+
+.admin-addproduct-itemfield input:focus,
+.admin-add-product-selector:focus {
+    outline: none;
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+    background: #fff;
+}
+
+.admin-addproduct-itemfield input::placeholder {
+    color: #aaa;
+    opacity: 0.8;
+}
+
+.admin-add-product-price {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-add-product-price .admin-addproduct-itemfield {
+    flex: 1;
+}
+
+.admin-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 20px;
+    border: 2px dashed #d0d0e0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: #fafaff;
+}
+
+.admin-upload-label:hover {
+    border-color: #6c5ce7;
+    background: #f5f3ff;
+}
+
+.admin-upload-hint {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+}
+
+.admin-add-product-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 0;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 28px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.admin-add-product-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.35);
+}
+
+.admin-add-product-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.admin-btn-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.admin-spinner {
+    width: 20px;
+    height: 20px;
+    animation: adminSpin 1s linear infinite;
+}
+
+.admin-addproduct-thumbnail-img {
+    display: block;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #f0f0f5;
+}
+
+@keyframes adminSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes adminFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-add-product {
+        padding: 25px 20px;
+        margin: 0 10px;
+    }
+    .admin-add-product-price {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-add-product {
+        padding: 20px 15px;
+    }
+    .admin-add-title {
+        font-size: 18px;
+    }
+    .admin-addproduct-thumbnail-img {
+        width: 120px;
+        height: 120px;
+    }
+}

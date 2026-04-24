@@ -5,6 +5,7 @@ const Users = mongoose.model("Users", {
   email: { type: String, unique: true },
   password: String,
   cartData: Object,
+  isAdmin: { type: Boolean, default: false },
   date: { type: Date, default: Date.now }
 });
 

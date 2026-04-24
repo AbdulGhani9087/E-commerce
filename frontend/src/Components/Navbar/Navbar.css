@@ -439,3 +439,42 @@
         font-size: 24px;
     }
 }
+
+/* Admin Nav Link Styles */
+.nav-admin-item .nav-admin-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(168, 85, 247, 0.1));
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: 25px;
+    padding: 10px 20px;
+    color: #6c5ce7;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.nav-admin-item .nav-admin-link:hover {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(168, 85, 247, 0.2));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
+}
+
+.nav-admin-item.active .nav-admin-link {
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.nav-admin-item.active .nav-admin-link svg {
+    stroke: white;
+}
+
+.nav-admin-item .nav-admin-link hr {
+    display: none;
+}
+
+.nav-admin-item .active-dot {
+    display: none;
+}

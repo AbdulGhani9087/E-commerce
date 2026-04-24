@@ -8,6 +8,7 @@ import { Product } from './Pages/Product'
 import { Cart } from './Pages/Cart'
 import LoginSignup  from './Pages/LoginSignup'
 import Footer from './Components/Footer/Footer'
+import AdminPanel from './Pages/AdminPanel'
 
 import men_banner from './Components/Assets/banner_mens.png'
 import women_banner from './Components/Assets/banner_women.png'
@@ -29,6 +30,7 @@ function App() {
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/login' element={<LoginSignup />} />
+          <Route path='/admin/*' element={<AdminPanel />} />
         </Routes>
         <Footer />
       </BrowserRouter>

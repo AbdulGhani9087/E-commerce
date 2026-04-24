@@ -1,0 +1,30 @@
+/* Admin Panel Layout */
+
+.admin-panel {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    background: #f4f3ff;
+}
+
+.admin-panel-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-panel {
+        flex-direction: column;
+    }
+
+    .admin-panel-content {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-panel-content {
+        padding: 15px 10px;
+    }
+}
