@@ -303,3 +303,35 @@
     color: #aaa;
   }
 }
+
+/* OTP Specific Styles */
+.otp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.otp-section p {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.otp-input {
+  text-align: center;
+  letter-spacing: 5px;
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  border-color: #667eea !important;
+}
+
+.resend-otp {
+  font-size: 0.85rem;
+  color: #667eea;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.resend-otp:hover {
+  text-decoration: underline;
+}
