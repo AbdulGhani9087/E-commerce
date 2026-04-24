@@ -7,6 +7,10 @@ exports.sendOTP = async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ success: false, errors: "Email is required" });
 
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    return res.status(500).json({ success: false, errors: "Server Configuration Error: SMTP credentials (USER/PASS) are missing on Render Dashboard." });
+  }
+
   try {
     // Create transporter dynamically to ensure latest ENV vars
     const transporter = nodemailer.createTransport({
