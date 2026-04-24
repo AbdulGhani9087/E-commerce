@@ -5,7 +5,7 @@ import star_dull_icon from '../Assets/star_dull_icon.png';
 import { ShopContext } from '../../Context/ShopContext';
 
 export const ProductDisplay = ({ product }) => {
-    const { addtoCart } = useContext(ShopContext);
+    const { addToCart } = useContext(ShopContext);
 
     // Guard against undefined product
     if (!product) return <p>Loading product...</p>;
@@ -48,7 +48,7 @@ export const ProductDisplay = ({ product }) => {
                     <div>XXL</div>
                   </div>
                 </div>
-               <button onClick={() => addtoCart(product.id)}>Add to cart</button>
+               <button onClick={() => addToCart(product.id)}>Add to cart</button>
                <p className="productdisplay-right-category">
                 <span>Category:</span>
                 {product.category || "N/A"}

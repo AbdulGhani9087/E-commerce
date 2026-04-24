@@ -9,7 +9,20 @@ export const Navbar = () => {
     const [menu, setMenu] = useState("shop");
     const { getTotalCartItems, isAdmin, setIsAdmin } = useContext(ShopContext);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isCartBumping, setIsCartBumping] = useState(false);
     const location = useLocation();
+
+    const totalCartItems = getTotalCartItems();
+
+    // Trigger bump animation when cart count changes
+    useEffect(() => {
+        if (totalCartItems === 0) return;
+        setIsCartBumping(true);
+        const timer = setTimeout(() => {
+            setIsCartBumping(false);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [totalCartItems]);
 
     // Detect scroll for navbar background change
     useEffect(() => {
@@ -115,8 +128,8 @@ export const Navbar = () => {
                 <Link to='/cart' className="cart-link">
                     <div className="cart-container">
                         <img src={cart_icon} alt="cart icon" className="cart-icon" />
-                        <div className="nav-cart-count">
-                            {getTotalCartItems && getTotalCartItems()}
+                        <div className={`nav-cart-count ${isCartBumping ? 'bump' : ''}`}>
+                            {totalCartItems}
                             <div className="cart-pulse"></div>
                         </div>
                         <div className="cart-badge"></div>

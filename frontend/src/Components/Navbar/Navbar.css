@@ -347,6 +347,16 @@
     color: white;
     animation: pulse 2s infinite;
 }
+.nav-cart-count.bump {
+    animation: bump 0.3s ease-out;
+}
+
+@keyframes bump {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.4); }
+    30% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
 
 @keyframes pulse {
     0%, 100% { transform: scale(1); }

@@ -89,7 +89,7 @@ export const ShopContextProvider = (props) => {
     }
   };
 
-  const addtoCart = (itemId) => {
+  const addToCart = (itemId) => {
     setCartItems((prev) => {
       const updated = { ...prev, [itemId]: prev[itemId] + 1 };
 
@@ -169,7 +169,7 @@ export const ShopContextProvider = (props) => {
     getTotalCartAmount,
     all_product,
     cartItems,
-    addtoCart,
+    addToCart,
     removeFromCart,
     user,
     setUser,
