@@ -37,8 +37,13 @@ exports.sendOTP = async (req, res) => {
     await transporter.sendMail(mailOptions);
     res.json({ success: true, message: "OTP sent to email" });
   } catch (error) {
-    console.error("Error sending OTP:", error);
-    res.status(500).json({ success: false, errors: "Failed to send OTP. Please check SMTP settings." });
+    console.error("DETAILED OTP ERROR:", {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      command: error.command
+    });
+    res.status(500).json({ success: false, errors: "Failed to send OTP: " + error.message });
   }
 };
 
